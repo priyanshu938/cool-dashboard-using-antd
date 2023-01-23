@@ -50,14 +50,14 @@ function App() {
   return (
     <>
       <Layout className="container">
-        <Header style={{ backgroundColor: "white" }}>
+        <Header>
           <div style={{ display: "flex", alignItems: "center" }}>
             <GiHamburgerMenu
               size={28}
               style={{ marginRight: 20 }}
               onClick={() => setCollapsed(!collapsed)}
             />
-            <div className="">Cool-dashboard</div>
+            <div >Cool-dashboard</div>
           </div>
         </Header>
         <Layout>
