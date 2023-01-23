@@ -15,6 +15,7 @@ import {
   TimePicker,
   Empty,
   Modal,
+  notification,
 } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
@@ -49,18 +50,14 @@ function App() {
   return (
     <>
       <Layout className="container">
-        <Header
-          style={{
-            backgroundColor: "white",
-          }}
-        >
+        <Header style={{ backgroundColor: "white" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <GiHamburgerMenu
               size={28}
               style={{ marginRight: 20 }}
               onClick={() => setCollapsed(!collapsed)}
             />
-            <div className="brand">Cool-dashboard</div>
+            <div className="">Cool-dashboard</div>
           </div>
         </Header>
         <Layout>
@@ -147,6 +144,10 @@ function App() {
                 <Form
                   onFinish={(values) => {
                     console.log(values);
+                    setModalOpen(false);
+                    notification.success({
+                      message: "User registered",
+                    });
                   }}
                   layout="vertical"
                 >
@@ -219,48 +220,50 @@ function App() {
               </Col>
             </Row>
             */}
-            <Row gutter={10} style={{ marginTop: 10 }}>
-              <Col span={18}>
-                <Table
-                  dataSource={data}
-                  columns={[
-                    {
-                      dataIndex: "id",
-                      title: "ID",
-                      key: "id",
-                    },
-                    {
-                      dataIndex: "name",
-                      title: "name",
-                      key: "name",
-                    },
-                    {
-                      dataIndex: "email",
-                      title: "Email Id",
-                      key: "email",
-                    },
-                    {
-                      dataIndex: "status",
-                      title: "Status",
-                      key: "status",
-                      render: (val) =>
-                        val ? <Tag>Active</Tag> : <Tag>Not Active</Tag>,
-                    },
-                    {
-                      title: "ACtions",
-                      render: () => (
-                        <ButtonGroup>
-                          <Button>Edit</Button>
-                          <Button type="primary" danger>
-                            Delete
-                          </Button>
-                        </ButtonGroup>
-                      ),
-                    },
-                  ]}
-                />
-              </Col>
-            </Row>
+            <Card>
+              <Row gutter={10} style={{ marginTop: 10 }}>
+                <Col span={18}>
+                  <Table
+                    dataSource={data}
+                    columns={[
+                      {
+                        dataIndex: "id",
+                        title: "ID",
+                        key: "id",
+                      },
+                      {
+                        dataIndex: "name",
+                        title: "name",
+                        key: "name",
+                      },
+                      {
+                        dataIndex: "email",
+                        title: "Email Id",
+                        key: "email",
+                      },
+                      {
+                        dataIndex: "status",
+                        title: "Status",
+                        key: "status",
+                        render: (val) =>
+                          val ? <Tag>Active</Tag> : <Tag>Not Active</Tag>,
+                      },
+                      {
+                        title: "ACtions",
+                        render: () => (
+                          <ButtonGroup>
+                            <Button>Edit</Button>
+                            <Button type="primary" danger>
+                              Delete
+                            </Button>
+                          </ButtonGroup>
+                        ),
+                      },
+                    ]}
+                  />
+                </Col>
+              </Row>
+            </Card>
           </Content>
         </Layout>
       </Layout>
